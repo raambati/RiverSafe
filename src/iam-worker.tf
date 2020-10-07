@@ -39,7 +39,7 @@ resource "aws_iam_policy" "s3_policy" {
         "s3:GetObject"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.bucket.arn}/*"
+      "Resource": "aws_s3_bucket.bucket.arn/*"
     }
   ]
 }
@@ -74,6 +74,6 @@ resource "aws_iam_role_policy_attachment" "worker_s3_attachment" {
 }
 
 resource "aws_iam_role_policy_attachment" "worker_lambda_attachment" {
-  role       = "${aws_iam_role.worker_role.name}"
-  policy_arn = "${aws_iam_policy.lambda_policy.arn}"
+  role       = aws_iam_role.worker_role.name
+  policy_arn = aws_iam_policy.lambda_policy.arn
 }
